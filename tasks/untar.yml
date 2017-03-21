@@ -5,7 +5,7 @@
   local_action: shell tar xJf {{ diag_path}}/{{ ansible_hostname }}/{{ diag_filename}} -C {{ diag_path}}/{{ ansible_hostname }} --strip-components=1
 
 - name: Make all local files writable (otherwise they cannot later be deleted)
-  local_action: shell chmod -R +w {{ diag_path}}/{{ ansible_hostname }}
+  local_action: file mode="o+w" path="{{ diag_path}}/{{ ansible_hostname }}" recurse=yes
 
 - name: Remove the sosreport archive, which has now been untar\'d
-  local_action: rm -f {{ diag_path}}/{{ ansible_hostname }}/{{ diag_filename}}
+  local_action: command rm -f {{ diag_path}}/{{ ansible_hostname }}/{{ diag_filename}}
