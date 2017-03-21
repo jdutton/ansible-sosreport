@@ -6,13 +6,13 @@
 #   $diag_filename is the base 
 
 - name: Clean tmpdir {{ tmpdir }}
-  file: path=$tmpdir state=absent
+  file: path={{ tmpdir }} state=absent
 
 - name: Create empty tmpdir {{ tmpdir }}
-  file: path=$tmpdir state=directory
+  file: path={{ tmpdir }} state=directory
 
 - name: Run PATH={{ sosreport_path }}:\{{ PATH }} {{ sosreport_cmd }} {{ sosreport_args }} to generate {{ diag_filename }} in tmpdir {{ tmpdir }}
-  shell: "PATH={{ sosreport_path }}:$PATH {{ sosreport_cmd }} {{ sosreport_args }} --batch --tmp-dir {{ tmpdir }}"
+  shell: "PATH={{ sosreport_path }}:{{ PATH }} {{ sosreport_cmd }} {{ sosreport_args }} --batch --tmp-dir {{ tmpdir }}"
   when: sosreport_path is defined
 
 - name: Run {{ sosreport_cmd }} {{ sosreport_args }} to generate {{ diag_filename }} in {{ tmpdir }}
