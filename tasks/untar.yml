@@ -8,5 +8,8 @@
   local_action: file mode="o+w" path="{{ diag_path}}/{{ ansible_hostname }}" recurse=yes
   ignore_errors: yes
 
-- name: Remove the sosreport archive, which has now been untar\'d
+- name: Remove the sosreport archive, which has now been untared
   local_action: command rm -f {{ diag_path}}/{{ ansible_hostname }}/{{ diag_filename}}
+
+- name: Remove the sosreport archive checksum, which has now been untared
+  local_action: command rm -f {{ diag_path}}/{{ ansible_hostname }}/{{ diag_filename}}.md5
