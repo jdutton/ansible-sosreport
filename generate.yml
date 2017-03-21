@@ -32,9 +32,11 @@
 
     - include: tasks/install.yml
       when: not custom_sosreport_pkgs|bool
+      tag: install
 
     - include: tasks/install_custom.yml
       when: custom_sosreport_pkgs|bool
+      tag: install
 
     - include: tasks/run.yml
 
