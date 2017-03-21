@@ -6,6 +6,7 @@
 
 - name: Make all local files writable (otherwise they cannot later be deleted)
   local_action: file mode="o+w" path="{{ diag_path}}/{{ ansible_hostname }}" recurse=yes
+  ignore_errors: yes
 
 - name: Remove the sosreport archive, which has now been untar\'d
   local_action: command rm -f {{ diag_path}}/{{ ansible_hostname }}/{{ diag_filename}}
